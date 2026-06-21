@@ -1,0 +1,6 @@
+# Runtime dependencies are provided by the Databricks Runtime (PySpark, Delta Lake).
+# These are listed for local development, linting, and IDE type hints only.
+
+pyspark==3.5.1
+delta-spark==3.2.0
+PyYAML==6.0.1

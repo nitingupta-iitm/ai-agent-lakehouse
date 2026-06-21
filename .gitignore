@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Databricks
+.databricks/
+*.databricks.json
+databricks.yml.bak
+
+# Spark / Delta local artifacts
+spark-warehouse/
+metastore_db/
+derby.log
+*.crc
+_delta_log/
+*.parquet
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Secrets / local config overrides
+.env
+*.local.yml
+conf/*.local.yml

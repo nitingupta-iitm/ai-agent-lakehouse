@@ -1,0 +1,38 @@
+# Databricks Asset Bundle
+# Deploys the medallion pipeline code + orchestrated Workflow as version-controlled IaC.
+# Docs: https://docs.databricks.com/en/dev-tools/bundles/index.html
+
+bundle:
+  name: ai-agent-lakehouse
+
+# Pull in the Workflow (Job) definition.
+include:
+  - resources/*.yml
+
+# Common variables referenced by the job and notebooks.
+variables:
+  catalog:
+    description: Unity Catalog catalog for all medallion schemas.
+    default: ai_observability
+  notifications_email:
+    description: Email to notify on job failure.
+    default: ""
+
+targets:
+  # Default development target — deploys to your personal workspace folder.
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://your-workspace.cloud.databricks.com
+    variables:
+      catalog: ai_observability_dev
+
+  # Production target — isolated catalog, paused triggers replaced by a schedule.
+  prod:
+    mode: production
+    workspace:
+      host: https://your-workspace.cloud.databricks.com
+      root_path: /Shared/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: ai_observability

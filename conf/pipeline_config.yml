@@ -1,0 +1,31 @@
+# ---------------------------------------------------------------------------
+# Central pipeline configuration.
+# Everything that varies between environments lives here so the transform code
+# stays parameterized and idempotent. Override `catalog` per-environment via the
+# Databricks Asset Bundle variable (see databricks.yml).
+# ---------------------------------------------------------------------------
+
+source_system: ai_agent_logs
+
+# Unity Catalog catalog. Can be overridden at runtime by the `catalog` job param.
+catalog: ai_observability
+
+schemas:
+  bronze: bronze
+  silver: silver
+  gold: gold
+
+# Volume where raw log files are landed (the "file drop" location).
+volume: raw_landing
+landing_subdir: agent_logs
+
+tables:
+  bronze: agent_logs_raw
+  silver: agent_logs_clean
+  quarantine: agent_logs_quarantine
+  gold: agent_performance
+
+# Data quality thresholds — the run fails if more than this fraction of
+# records land in quarantine (guards against upstream format breakage).
+quality:
+  max_quarantine_ratio: 0.25

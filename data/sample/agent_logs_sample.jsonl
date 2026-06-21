@@ -1,0 +1,8 @@
+{"agent": "alpha", "status": "success", "duration_ms": 120}
+{"agent": "beta", "status": "failed", "duration_ms": 300}
+{"agent": "alpha", "status": "success", "duration_ms": 115}
+{"agent": "gamma", "status": "success", "duration_ms": 140}
+{"agent": "beta", "status": "timeout", "duration_ms": 5000}
+{"agent": "gamma", "status": "success", "duration_ms": 138}
+CORRUPTED_RECORD_XYZ
+{"agent": "delta", "status": "??", "duration_ms": -5}
